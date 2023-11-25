@@ -1,215 +1,217 @@
-const ingridients = [
+const ingridients = {
+    "1": 
+        {
+            "id": "1",
+            "ingridient": "beef"
+        },
+    "2":
+        {
+        "id": "2",
+        "ingridient": "chicken"
+        },
+    "3":
+        {
+        "id": "3",
+        "ingridient": "pork"
+        },
+    "4":
+        {
+        "id": "4",
+        "ingridient": "fish"
+        },
+    "5":
+        {
+            "id": "5",
+            "ingridient": "bear meat (0_0)"
+        },
+    "6":
+        {
+            "id": "6",
+            "ingridient": "venison"
+        },
+    "7":
+        {
+            "id": "7",
+            "ingridient": "rabbit"
+        },
+    "8":
+        {
+            "id": "8",
+            "ingridient": "lettuce"
+        },
+    "9":
+        {
+            "id": "9",
+            "ingridient": "spinach"
+        },
+    "10":
+        {
+            "id": "10",
+            "ingridient": "kale"
+        },
+    "11":
+        {
+            "id": "11",
+            "ingridient": "bok choy (Chinese chard)"
+        },
+    "12":
+        {
+            "id": "12",
+            "ingridient": "cabbage"
+        },
+    "13":
+        {
+            "id": "13",
+            "ingridient": "mustard greens"
+        },
+    "14":
+        {
+            "id": "14",
+            "ingridient": "salt"
+        },
+    "15":
+        {
+            "id": "15",
+            "ingridient": "pepper"
+        },
+    "16":
+        {
+            "id": "16",
+            "ingridient": "cumin"
+        },
+    "17":
+        {
+            "id": "17",
+            "ingridient": "paprika"
+        },
+    "18":
+        {
+            "id": "18",
+            "ingridient": "cinnamon"
+        },
+    "19":
+        {
+            "id": "19",
+            "ingridient": "chilli powder"
+        },
+    "20":
+        {
+            "id": "20",
+            "ingridient": "saffron"
+        },
+    "21":
     {
-        "id": 1,
-        "ingridients": [
-            {
-                "id": "1",
-                "ingridient": "beef"
-            },
-            {
-                "id": "2",
-                "ingridient": "chicken"
-            },
-            {
-                "id": "3",
-                "ingridient": "pork"
-            },
-            {
-                "id": "4",
-                "ingridient": "fish"
-            },
-            {
-                "id": "5",
-                "ingridient": "bear meat (0_0)"
-            },
-            {
-                "id": "6",
-                "ingridient": "venison"
-            },
-            {
-                "id": "7",
-                "ingridient": "rabbit"
-            }
-        ]
+        "id": "21",
+        "ingridient": "star anise"
     },
+    "22":
     {
-        "id": 2,
-        "ingridients": [
-            {
-                "id": "8",
-                "ingridient": "lettuce"
-            },
-            {
-                "id": "9",
-                "ingridient": "spinach"
-            },
-            {
-                "id": "10",
-                "ingridient": "kale"
-            },
-            {
-                "id": "11",
-                "ingridient": "bok choy (Chinese chard)"
-            },
-            {
-                "id": "12",
-                "ingridient": "cabbage"
-            },
-            {
-                "id": "13",
-                "ingridient": "mustard greens"
-            }
-        ]
+        "id": "22",
+        "ingridient": "turmeric"
     },
+    "23":
     {
-        "id": 3,
-        "ingridients": [
-            {
-                "id": "14",
-                "ingridient": "salt"
-            },
-            {
-                "id": "15",
-                "ingridient": "pepper"
-            },
-            {
-                "id": "16",
-                "ingridient": "cumin"
-            },
-            {
-                "id": "17",
-                "ingridient": "paprika"
-            },
-            {
-                "id": "18",
-                "ingridient": "cinnamon"
-            },
-            {
-                "id": "19",
-                "ingridient": "chilli powder"
-            },
-            {
-                "id": "20",
-                "ingridient": "saffron"
-            },
-            {
-                "id": "21",
-                "ingridient": "star anise"
-            },
-            {
-                "id": "22",
-                "ingridient": "turmeric"
-            }
-        ]
+        "id": "23",
+        "ingridient": "tomato"
     },
+    "24":
     {
-        "id": 4,
-        "ingridients": [
-            {
-                "id": "23",
-                "ingridient": "tomato"
-            },
-            {
-                "id": "24",
-                "ingridient": "cucumber"
-            },
-            {
-                "id": "25",
-                "ingridient": "onion"
-            },
-            {
-                "id": "26",
-                "ingridient": "carrot"
-            },
-            {
-                "id": "27",
-                "ingridient": "potato"
-            },
-            {
-                "id": "28",
-                "ingridient": "purple yum"
-            },
-            {
-                "id": "29",
-                "ingridient": "ginger"
-            },
-            {
-                "id": "30",
-                "ingridient": "sunchoke"
-            }
-        ]
+        "id": "24",
+        "ingridient": "cucumber"
     },
+    "25":
     {
-        "id": 5,
-        "ingridients": [
-            {
-                "id": "31",
-                "ingridient": "banana"
-            },
-            {
-                "id": "32",
-                "ingridient": "pineapple"
-            },
-            {
-                "id": "33",
-                "ingridient": "lemon"
-            },
-            {
-                "id": "34",
-                "ingridient": "durian"
-            },
-            {
-                "id": "35",
-                "ingridient": "pomegranate"
-            },
-            {
-                "id": "36",
-                "ingridient": "avocado"
-            },
-            {
-                "id": "37",
-                "ingridient": "cantaloupe"
-            }
-        ]
-    }
-]
-
-const columns = {
-    "col-1": {
-        "id": 0,
-        "title": "Pot",
-        "ingridients": {
-            "id": 0,
-            "ingridients": []
-        }
+        "id": "25",
+        "ingridient": "onion"
     },
-    "col-2": {
-        "id": 1,
-        "title": "meats",
-        "ingridients": ingridients[0]
+    "26":
+    {
+        "id": "26",
+        "ingridient": "carrot"
     },
-    "col-3": {
-        "id": 2,
-        "title": "greens",
-        "ingridients": ingridients[1]
+    "27":
+    {
+        "id": "27",
+        "ingridient": "potato"
     },
-    "col-4": {
-        "id": 3,
-        "title": "spices",
-        "ingridients": ingridients[2]
+    "28":
+    {
+        "id": "28",
+        "ingridient": "purple yum"
     },
-    "col-5": {
-        "id": 4,
-        "title": "vegetables",
-        "ingridients": ingridients[3]
+    "29":
+    {
+        "id": "29",
+        "ingridient": "ginger"
     },
-    "col-6": {
-        "id": 5,
-        "title": "fruits",
-        "ingridients": ingridients[4]
+    "30":
+    {
+        "id": "30",
+        "ingridient": "sunchoke"
+    },
+    "31": {
+        "id": "31",
+        "ingridient": "banana"
+    },
+    "32": {
+        "id": "32",
+        "ingridient": "pineapple"
+    },
+    "33": {
+        "id": "33",
+        "ingridient": "lemon"
+    },
+    "34": {
+        "id": "34",
+        "ingridient": "durian"
+    },
+    "35": {
+        "id": "35",
+        "ingridient": "pomegranate"
+    },
+    "36": {
+        "id": "36",
+        "ingridient": "avocado"
+    },
+    "37": {
+        "id": "37",
+        "ingridient": "cantaloupe"
     }
 }
 
-const columnOrders = ["col-1", "col-2", "col-3", "col-4", "col-5", "col-6"]
+const columns = {
+    "col-0": {
+        "id": 0,
+        "title": "Pot",
+        "ingridientIds": []
+    },
+    "col-1": {
+        "id": 1,
+        "title": "meats",
+        "ingridientIds": [1, 2, 3, 4, 5, 6, 7]
+    },
+    "col-2": {
+        "id": 2,
+        "title": "greens",
+        "ingridientIds": [8, 9, 10, 11, 12, 13]
+    },
+    "col-3": {
+        "id": 3,
+        "title": "spices",
+        "ingridientIds": [14, 15, 16, 17, 18, 19, 20, 21, 22]
+    },
+    "col-4": {
+        "id": 4,
+        "title": "vegetables",
+        "ingridientIds": [23, 24, 25, 26, 27, 28, 29, 30]
+    },
+    "col-5": {
+        "id": 5,
+        "title": "fruits",
+        "ingridientIds": [31, 32, 33, 34, 35, 36, 37]
+    }
+}
 
-export default { columns, columnOrders }
+const columnOrders = ["col-0", "col-1", "col-2", "col-3", "col-4", "col-5"]
+
+export default { columns, columnOrders, ingridients }

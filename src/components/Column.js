@@ -17,8 +17,6 @@ const IngridientsList = styled.div`
 
 export default class Column extends React.Component {
     render() {
-        const uniqueKey = this.props.column.id + "-" + this.props.column.title
-
         return (
             <Container>
                 <Title>{this.props.column.title}</Title>
@@ -29,7 +27,7 @@ export default class Column extends React.Component {
                             {...provided.droppableProps}
                         >
                             {
-                                this.props.ingridients.ingridients.map((ingridient, index) => {
+                                this.props.ingridients.map((ingridient, index) => {
                                     return <Ingridient key={ingridient.index} index={index} ingridient={ingridient} />
                                 })
                             }
