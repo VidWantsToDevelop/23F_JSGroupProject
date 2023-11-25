@@ -16,6 +16,32 @@ class MainComponent extends React.Component {
         ingridients: Data.ingridients
     }
 
+    // Get the ingridients from the pot
+    whatsInThePot = () => {
+
+        // Here is the requested format for the OpenAI API (e.g. "potato,beef,salt,turmeric")
+        const pot = this.state.columns["col-0"].ingridientIds.map(ingridientId => this.state.ingridients[ingridientId]);
+        var potString = "";
+        pot.forEach(ingridient => {
+            potString += ingridient.ingridient + ","
+        })
+
+        // Trim the last comma
+        potString = potString.substring(0, potString.length - 1);
+
+        return potString;
+    }
+
+    // almost like a useEffect hook :)
+    componentDidUpdate(prevProps, prevState) {
+        // Check if something has been put/removed from the pot
+        if(prevState.columns["col-0"].ingridientIds.length !== this.state.columns["col-0"].ingridientIds.length) {
+            console.log("Pot has been updated");
+            console.log(this.whatsInThePot());
+        }
+        
+    }
+
     onDragEnd = result => {
         // TODO: Implement onDragEnd
         const { destination, source, draggableId } = result

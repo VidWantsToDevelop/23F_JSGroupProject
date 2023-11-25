@@ -31,7 +31,7 @@ export class Ingridient extends React.Component {
         console.log("Index: " + this.props.index)
         console.log(typeof this.props.ingridient.id)
         return (
-            <Draggable draggableId={"ing-" + this.props.ingridient.id} index={this.props.index}>
+            <Draggable key={"ing-" + this.props.ingridient.id} draggableId={"ing-" + this.props.ingridient.id} index={this.props.index}>
                 {(provided, snapshot) => (
                     <Container
                     {...provided.draggableProps}
