@@ -7,12 +7,18 @@ const Container = styled.div`
     margin: 8px;
     border: 1px solid lightgrey;
     border-radius: 2px;
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
 `;
 const Title = styled.h3`
     padding: 8px;
 `;
 const IngridientsList = styled.div`
     padding: 8px;
+    flex-grow: 1;
 `;
 
 export default class Column extends React.Component {
