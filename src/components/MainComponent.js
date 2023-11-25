@@ -9,18 +9,22 @@ class MainComponent extends React.Component {
         columnOrder: Data.columnOrders
     }
 
+    onDragEnd = result => {
+        // TODO: Implement onDragEnd
+    }
+
     render() {
         return (
-        <div className="lists-container">
-            {this.state.columnOrder.map(columnId => {
-                const column = this.state.columns[columnId]
-                const ingridients = column.ingridients.map(ingridient => {
-                    return <li>{ingridient}</li>
-                })
+        <DragDropContext
+            onDragEnd={this.onDragEnd}
+        >
+            {this.state.columnOrder.map(colId => {
+                const column = this.state.columns[colId]
+                const ingridients = column.ingridients
 
                 return <Column key={column.id} column={column} ingridients={ingridients} />
             })}
-        </div>
+        </DragDropContext>
 
         )
     }

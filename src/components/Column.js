@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import Task from "./Task"
+import Ingridient from "./Ingridient"
+import { Droppable } from 'react-beautiful-dnd'
 
 const Container = styled.div`
     margin: 8px;
@@ -16,14 +17,27 @@ const IngridientsList = styled.div`
 
 export default class Column extends React.Component {
     render() {
+        const uniqueKey = this.props.column.id + "-" + this.props.column.title
+
         return (
             <Container>
                 <Title>{this.props.column.title}</Title>
-                <IngridientsList>
-                    {this.props.ingridients.map((ingridient, index) => {
-                        return <Task key={index} task={ingridient} />
-                    })}
-                </IngridientsList>
+                <Droppable droppableId={"col-" + this.props.column.id}>
+                    {provided => (
+                        <IngridientsList
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                        >
+                            {
+                                this.props.ingridients.ingridients.map((ingridient, index) => {
+                                    return <Ingridient key={ingridient.index} index={index} ingridient={ingridient} />
+                                })
+                            }
+
+                            {provided.placeholder}
+                        </IngridientsList>
+                    )}
+                </Droppable>
             </Container>
         )
     }
