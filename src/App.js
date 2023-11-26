@@ -1,6 +1,6 @@
 import "./App.css";
 import MainComponent from "./components/MainComponent";
-import banana from "./banana.gif";
+import banana from "./banana-gif.gif";
 
 function App() {
   return (

@@ -13,10 +13,10 @@ const Container = styled.div`
 // console.log(process.env.REACT_APP_OPENAI_API_KEY);
 
 // // Configure the OpenAI API
-// const openai = new OpenAI({
-//     apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-//     dangerouslyAllowBrowser: true,
-// });
+const openai = new OpenAI({
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true,
+});
 
 class MainComponent extends React.Component {
     state = {
