@@ -46,12 +46,26 @@ body {
   margin: 2em;
   margin-left: 13em;
   margin-right: 13em;
-  background-color: white;
   border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: 0.4em 0.4em lightblue;
 }
 
 p {
   font-size: 1.2rem;
+}
+
+img {
+  width: 15%;
+  height: auto;
+}
+
+#banana-id {
+  font-size: 0.6rem;
+}
+
+.sc-dlfmHC {
+  /* border: 3px solid lightgray; */
 }
 
 .sc-dlfmHC h3 {
@@ -60,9 +74,18 @@ p {
   margin-left: 0.5em;
   margin-right: 0.5em;
   background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0.2em 0.2em lightblue;
 }
 
 .sc-jSguLX {
   /* color: black; */
+}
+
+footer {
+  color: white;
+  text-align: left;
+  font-size: 1rem;
+  margin-left: 0.5em;
 }
 
