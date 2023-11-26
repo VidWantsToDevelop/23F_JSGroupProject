@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchOpenAIData } from "./services/openaiService";
+import "./RecipeFinderApp.css";
 
 const RecipeFinderApp = ({ initialIngredients }) => {
   const [ingredients, setIngredients] = useState(initialIngredients || '');
@@ -21,7 +22,7 @@ const RecipeFinderApp = ({ initialIngredients }) => {
           setWarning(null); 
         }
 
-        const prompt = `Find four recipes (under 75 words each) and put them together into one JSON file without the array, that can be made with the ingredients (don't have to contain all ingredients): ${ingredients};\n
+        const prompt = `Find one recipes (under 75 words each) and put them together into one JSON file without the array, that can be made with the ingredients (don't have to contain all ingredients): ${ingredients};\n
         USE THIS JSON FORMAT:\n
         
         {
@@ -52,20 +53,18 @@ const RecipeFinderApp = ({ initialIngredients }) => {
   }, [ingredients]);
 
   return (
-    <div>
-      <h1>Recipe Finder</h1>
-
+    <div className="recipe-finder-container"> 
       <h2>Recipes:</h2>
       {warning ? (
-        <p>{warning}</p>
+        <p className="warning">{warning}</p> 
       ) : loading ? (
-        <p>Looking for recipes...</p>
+        <p className="loading">Looking for recipes...</p> 
       ) : (
         <ul>
           {Object.keys(recipes).map((recipeKey) => {
             const recipe = recipes[recipeKey];
             return (
-              <li key={recipeKey}>
+              <li key={recipeKey} className="recipe-item"> 
                 <h3>{recipe.name}</h3>
                 <p>Ingredients: {recipe.ingredients.join(', ')}</p>
                 <p>Steps: {recipe.steps}</p>

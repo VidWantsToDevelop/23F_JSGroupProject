@@ -1,0 +1,32 @@
+
+
+.recipe-finder-container {
+    max-width: 70%;
+    margin: auto;
+    padding: 20px;
+    background-color: rgb(254, 228, 197);
+  }
+  
+  .warning {
+    color: rgb(255, 174, 0);
+    font-weight: bold;
+  }
+  
+  .loading {
+    font-style: italic;
+  }
+  
+  .recipe-item {
+    margin-bottom: 20px;
+    border: 1px solid #3b3b3b;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(221, 220, 220, 0.644);
+  }
+  
+  .recipe-item h3 {
+    margin-bottom: 5px;
+  }
+  
+  /* Add more styles as needed */
+  
