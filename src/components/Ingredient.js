@@ -5,11 +5,11 @@ import { Draggable } from 'react-beautiful-dnd';
 const Container = styled.div`
     padding: 8px;
     border: 1px solid lightgrey;
-    border-radius: 2px;
+    border-radius: 0.5rem;
     margin-bottom: 8px;
     background-color: white;
     opacity: ${props => (props.isDragging ? '0.5' : '1')};
-
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,12 +26,12 @@ const EmojiContainer = styled.div`
     backround-color: gray;
 `
 
-export class Ingridient extends React.Component {
+export class Ingredient extends React.Component {
     render() {
         console.log("Index: " + this.props.index)
-        console.log(typeof this.props.ingridient.id)
+        console.log(typeof this.props.ingredient.id)
         return (
-            <Draggable key={"ing-" + this.props.ingridient.id} draggableId={"ing-" + this.props.ingridient.id} index={this.props.index}>
+            <Draggable key={"ing-" + this.props.ingredient.id} draggableId={"ing-" + this.props.ingredient.id} index={this.props.index}>
                 {(provided, snapshot) => (
                     <Container
                     {...provided.draggableProps}
@@ -42,7 +42,7 @@ export class Ingridient extends React.Component {
                         <EmojiContainer>
                             🔥
                         </EmojiContainer>
-                        {this.props.ingridient.ingridient}
+                        {this.props.ingredient.ingredient}
                     </Container>
                 )}
             </Draggable>
@@ -50,4 +50,4 @@ export class Ingridient extends React.Component {
     }
 }
 
-export default Ingridient
+export default Ingredient
