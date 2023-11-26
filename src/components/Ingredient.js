@@ -40,7 +40,7 @@ export class Ingredient extends React.Component {
                     isDragging={snapshot.isDragging}
                     >
                         <EmojiContainer>
-                            🔥
+                            {this.props.ingredient.emoji}
                         </EmojiContainer>
                         {this.props.ingredient.ingredient}
                     </Container>

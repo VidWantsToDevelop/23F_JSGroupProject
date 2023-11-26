@@ -2,180 +2,217 @@ const ingredients = {
     "1": 
         {
             "id": "1",
-            "ingredient": "beef"
+            "ingredient": "beef",
+            "emoji": "🐄"
         },
     "2":
         {
         "id": "2",
-        "ingredient": "chicken"
+        "ingredient": "chicken",
+        "emoji": "🐔"
         },
     "3":
         {
         "id": "3",
-        "ingredient": "pork"
+        "ingredient": "pork",
+        "emoji": "🐖",
         },
     "4":
         {
         "id": "4",
-        "ingredient": "fish"
+        "ingredient": "fish",
+        "emoji": "🐟"
         },
     "5":
         {
             "id": "5",
-            "ingredient": "bear meat (0_0)"
+            "ingredient": "bear meat (0_0)",
+            "emoji": "🐻"
         },
     "6":
         {
             "id": "6",
-            "ingredient": "venison"
+            "ingredient": "venison",
+            "emoji": "🦌"
         },
     "7":
         {
             "id": "7",
-            "ingredient": "rabbit"
+            "ingredient": "rabbit",
+            "emoji": "🐇"
         },
     "8":
         {
             "id": "8",
-            "ingredient": "lettuce"
+            "ingredient": "lettuce",
+            "emoji": "🥬"
         },
     "9":
         {
             "id": "9",
-            "ingredient": "spinach"
+            "ingredient": "spinach",
+            "emoji": "🥬"
         },
     "10":
         {
             "id": "10",
-            "ingredient": "kale"
+            "ingredient": "kale",
+            "emoji": "🥬"
         },
     "11":
         {
             "id": "11",
-            "ingredient": "bok choy (Chinese chard)"
+            "ingredient": "bok choy (Chinese chard)",
+            "emoji": "🥬"
         },
     "12":
         {
             "id": "12",
-            "ingredient": "cabbage"
+            "ingredient": "cabbage",
+            "emoji": "🥬"
         },
     "13":
         {
             "id": "13",
-            "ingredient": "mustard greens"
+            "ingredient": "mustard greens",
+            "emoji": "🥬"
         },
     "14":
         {
             "id": "14",
-            "ingredient": "salt"
+            "ingredient": "salt",
+            "emoji": "🧂"
         },
     "15":
         {
             "id": "15",
-            "ingredient": "pepper"
+            "ingredient": "pepper",
+            "emoji": "🧂"
         },
     "16":
         {
             "id": "16",
-            "ingredient": "cumin"
+            "ingredient": "cumin",
+            "emoji": "🧂"
         },
     "17":
         {
             "id": "17",
-            "ingredient": "paprika"
+            "ingredient": "paprika",
+            "emoji": "🧂"
         },
     "18":
         {
             "id": "18",
-            "ingredient": "cinnamon"
+            "ingredient": "cinnamon",
+            "emoji": "🧂"
         },
     "19":
         {
             "id": "19",
-            "ingredient": "chilli powder"
+            "ingredient": "chilli powder",
+            "emoji": "🧂"
         },
     "20":
         {
             "id": "20",
-            "ingredient": "saffron"
+            "ingredient": "saffron",
+            "emoji": "🧂"
         },
     "21":
     {
         "id": "21",
-        "ingredient": "star anise"
+        "ingredient": "star anise",
+        "emoji": "🧂"
     },
     "22":
     {
         "id": "22",
-        "ingredient": "turmeric"
+        "ingredient": "turmeric",
+        "emoji": "🧂"
     },
     "23":
     {
         "id": "23",
-        "ingredient": "tomato"
+        "ingredient": "tomato",
+        "emoji": "🍅"
     },
     "24":
     {
         "id": "24",
-        "ingredient": "cucumber"
+        "ingredient": "cucumber",
+        "emoji": "🥒"
     },
     "25":
     {
         "id": "25",
-        "ingredient": "onion"
+        "ingredient": "onion",
+        "emoji": "🧅"
     },
     "26":
     {
         "id": "26",
-        "ingredient": "carrot"
+        "ingredient": "carrot",
+        "emoji": "🥕"
     },
     "27":
     {
         "id": "27",
-        "ingredient": "potato"
+        "ingredient": "potato",
+        "emoji": "🥔"
     },
     "28":
     {
         "id": "28",
-        "ingredient": "purple yum"
+        "ingredient": "purple yum",
+        "emoji": "🥔"
     },
     "29":
     {
         "id": "29",
-        "ingredient": "ginger"
+        "ingredient": "ginger",
+        "emoji": "🧅"
     },
     "30":
     {
         "id": "30",
-        "ingredient": "sunchoke"
+        "ingredient": "sunchoke",
+        "emoji": "🥔"
     },
     "31": {
         "id": "31",
-        "ingredient": "banana"
+        "ingredient": "banana",
+        "emoji": "🍌"
     },
     "32": {
         "id": "32",
-        "ingredient": "pineapple"
+        "ingredient": "pineapple",
+        "emoji": "🍍"
     },
     "33": {
         "id": "33",
-        "ingredient": "lemon"
+        "ingredient": "lemon",
+        "emoji": "🍋"
     },
     "34": {
         "id": "34",
-        "ingredient": "durian"
+        "ingredient": "durian",
+        "emoji": "🥭"
     },
     "35": {
         "id": "35",
-        "ingredient": "pomegranate"
+        "ingredient": "pomegranate",
+        "emoji": "🍎"
     },
     "36": {
         "id": "36",
-        "ingredient": "avocado"
+        "ingredient": "avocado",
+        "emoji": "🥑"
     },
     "37": {
         "id": "37",
-        "ingredient": "cantaloupe"
+        "ingredient": "cantaloupe",
+        "emoji": "🍈"
     }
 }
 
