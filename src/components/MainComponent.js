@@ -10,32 +10,32 @@ const Container = styled.div`
     display: flex;
 `;
 
-console.log(process.env.REACT_APP_OPENAI_API_KEY);
+// console.log(process.env.REACT_APP_OPENAI_API_KEY);
 
-// Configure the OpenAI API
-const openai = new OpenAI({
-    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true,
-});
+// // Configure the OpenAI API
+// const openai = new OpenAI({
+//     apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+//     dangerouslyAllowBrowser: true,
+// });
 
 class MainComponent extends React.Component {
     state = {
         columns: Data.columns,
         columnOrder: Data.columnOrders,
-        ingridients: Data.ingridients,
+        ingredients: Data.ingredients,
         prompt: "What is the recipe for a delicious meal?\n\nPot: potato,beef,salt,turmeric\n\nRecipe:",
         gptResponse: "",
         loading: false
     }
 
-    // Get the ingridients from the pot
+    // Get the ingredients from the pot
     whatsInThePot = () => {
 
         // Here is the requested format for the OpenAI API (e.g. "potato,beef,salt,turmeric")
-        const pot = this.state.columns["col-0"].ingridientIds.map(ingridientId => this.state.ingridients[ingridientId]);
+        const pot = this.state.columns["col-0"].ingredientIds.map(ingredientId => this.state.ingredients[ingredientId]);
         var potString = "";
-        pot.forEach(ingridient => {
-            potString += ingridient.ingridient + ","
+        pot.forEach(ingredient => {
+            potString += ingredient.ingredient + ","
         })
 
         // Trim the last comma
@@ -61,7 +61,7 @@ class MainComponent extends React.Component {
     // almost like a useEffect hook :)
     componentDidUpdate(prevProps, prevState) {
         // Check if something has been put/removed from the pot
-        if(prevState.columns["col-0"].ingridientIds.length !== this.state.columns["col-0"].ingridientIds.length) {
+        if(prevState.columns["col-0"].ingredientIds.length !== this.state.columns["col-0"].ingredientIds.length) {
             console.log("Pot has been updated");
             console.log(this.whatsInThePot());
         }
@@ -76,7 +76,7 @@ class MainComponent extends React.Component {
         // TODO: Implement onDragEnd
         const { destination, source, draggableId } = result
 
-        // If dropped outside of the ingridients list -> exit function
+        // If dropped outside of the ingredients list -> exit function
         if(!destination) {
             return;
         }
@@ -96,15 +96,15 @@ class MainComponent extends React.Component {
 
         // If droppped in the same column
         if(start === finish) {
-            const newIngridientIds = Array.from(start.ingridientIds);
+            const newIngredientIds = Array.from(start.ingredientIds);
 
-            // Remove the ingridient from the source column and add it to the destination column (newIngridientIds)
-            newIngridientIds.splice(source.index, 1);
-            newIngridientIds.splice(destination.index, 0, Number(draggableIdParsed));
+            // Remove the ingredient from the source column and add it to the destination column (newIngredientIds)
+            newIngredientIds.splice(source.index, 1);
+            newIngredientIds.splice(destination.index, 0, Number(draggableIdParsed));
 
             const newColumn = {
                 ...start,
-                ingridientIds: newIngridientIds
+                ingredientIds: newIngredientIds
             };
 
             // Match out column id format
@@ -125,18 +125,18 @@ class MainComponent extends React.Component {
         }
 
         // Moving from one column to another
-        const startIngridientIds = Array.from(start.ingridientIds);
-        startIngridientIds.splice(source.index, 1);
+        const startIngredientIds = Array.from(start.ingredientIds);
+        startIngredientIds.splice(source.index, 1);
         const newStart = {
             ...start,
-            ingridientIds: startIngridientIds
-        }; // Remove the ingridient from the source column
+            ingredientIds: startIngredientIds
+        }; // Remove the ingredient from the source column
 
-        const finishIngridientIds = Array.from(finish.ingridientIds);
-        finishIngridientIds.splice(destination.index, 0, Number(draggableIdParsed));
+        const finishIngredientIds = Array.from(finish.ingredientIds);
+        finishIngredientIds.splice(destination.index, 0, Number(draggableIdParsed));
         const newFinish = {
             ...finish,
-            ingridientIds: finishIngridientIds
+            ingredientIds: finishIngredientIds
         }; // Add our recipe to the pot
 
         // Update the state
@@ -173,11 +173,11 @@ class MainComponent extends React.Component {
             <Container>
                 {this.state.columnOrder.map(colId => {
                     const column = this.state.columns[colId]
-                    const ingridients = column.ingridientIds.map(ingridientId => this.state.ingridients[ingridientId])
+                    const ingredients = column.ingredientIds.map(ingredientId => this.state.ingredients[ingredientId])
 
-                    console.log(ingridients)
+                    console.log(ingredients)
 
-                    return <Column key={column.id} column={column} ingridients={ingridients} />
+                    return <Column key={column.id} column={column} ingredients={ingredients} />
                 })}
             </Container>
         </DragDropContext>

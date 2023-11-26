@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Ingridient from "./Ingridient"
+import Ingredient from "./Ingredient"
 import { Droppable } from 'react-beautiful-dnd'
 
 const Container = styled.div`
@@ -16,7 +16,7 @@ const Container = styled.div`
 const Title = styled.h3`
     padding: 8px;
 `;
-const IngridientsList = styled.div`
+const IngredientsList = styled.div`
     padding: 8px;
     flex-grow: 1;
 `;
@@ -28,18 +28,18 @@ export default class Column extends React.Component {
                 <Title>{this.props.column.title}</Title>
                 <Droppable droppableId={"col-" + this.props.column.id}>
                     {provided => (
-                        <IngridientsList
+                        <IngredientsList
                             ref={provided.innerRef}
                             {...provided.droppableProps}
                         >
                             {
-                                this.props.ingridients.map((ingridient, index) => {
-                                    return <Ingridient key={ingridient.index} index={index} ingridient={ingridient} />
+                                this.props.ingredients.map((ingredient, index) => {
+                                    return <Ingredient key={ingredient.index} index={index} ingredient={ingredient} />
                                 })
                             }
 
                             {provided.placeholder}
-                        </IngridientsList>
+                        </IngredientsList>
                     )}
                 </Droppable>
             </Container>

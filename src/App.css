@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.App-logo {
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -22,17 +22,47 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
-.App-link {
+/* .App-link {
   color: #61dafb;
-}
+} */
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+} */
+
+body {
+  background-image: url(../public/background\ for\ react1.gif);
 }
+
+.headerBasic {
+  padding: 0.5em;
+  margin: 2em;
+  margin-left: 13em;
+  margin-right: 13em;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+.sc-dlfmHC h3 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  background-color: white;
+}
+
+.sc-jSguLX {
+  /* color: black; */
+}
+
