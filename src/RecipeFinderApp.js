@@ -1,48 +1,69 @@
 import React, { useState, useEffect } from "react";
-
 import { fetchOpenAIData } from "./services/openaiService";
 
 const RecipeFinderApp = ({ initialIngredients }) => {
-    const [ingredients, setIngredients] = useState(initialIngredients || '');
-    const [recipes, setRecipes] = useState([]);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const prompt = `Find not simplified recipes and put them into JSON format that can be made with the ingredients: ${ingredients}; with fields: "name" - String, "ingredients" - array, "steps" - String. Don't put other text, you can post only JSON.`;
-  
-          const result = await fetchOpenAIData(prompt);
-          setRecipes(result);
-        } catch (error) {
-          console.error('Error fetching recipes:', error);
+  const [ingredients, setIngredients] = useState(initialIngredients || '');
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true); 
+
+        const prompt = `Find three recipes (under 75 words each) and put them together into one JSON file without the array, that can be made with the ingredients (don't have to contain all ingredients): ${ingredients};\n
+        USE THIS JSON FORMAT:\n
+        
+        {
+          "recipe1": {
+            "name": "",
+            "ingredients": ["", "", "", ""],
+            "steps": ""
+          },
+          "recipe2": {
+            "name": "",
+            "ingredients": ["", "", "", ""],
+            "steps": ""
+          }
         }
-      };
+        \n
+        DON'T PUT ANY TEXT, USE ONLY JSON RESPONCE.`;
+
+        const result = await fetchOpenAIData(prompt);
+        setRecipes(result);
+      } catch (error) {
+        console.error('Error fetching recipes:', error);
+      } finally {
+        setLoading(false); 
+      }
+    };
 
     fetchData();
   }, [ingredients]);
 
-
-console.log(recipes);
-
   return (
-
-    
     <div>
       <h1>Recipe Finder</h1>
 
       <h2>Recipes:</h2>
-      <ul>
-        {recipes.map((recipe, index) => (
-          <li key={index}>
-            <h3>{recipe.name}</h3>
-            <p>Ingredients: {recipe.ingredients.join(', ')}</p>
-            <p>Steps: {recipe.steps}</p>
-          </li>
-        ))}
-      </ul>
+      {loading ? (
+        <p>Looking for recipes...</p>
+      ) : (
+        <ul>
+          {Object.keys(recipes).map((recipeKey) => {
+            const recipe = recipes[recipeKey];
+            return (
+              <li key={recipeKey}>
+                <h3>{recipe.name}</h3>
+                <p>Ingredients: {recipe.ingredients.join(', ')}</p>
+                <p>Steps: {recipe.steps}</p>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };
 
 export default RecipeFinderApp;
-

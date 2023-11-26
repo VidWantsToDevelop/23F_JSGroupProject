@@ -1,26 +1,24 @@
 import axios from 'axios';
 
-const OPENAI_API_BASE_URL = 'https://api.openai.com/v1';
 const REACT_APP_OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
-const openaiService = axios.create({
-  baseURL: OPENAI_API_BASE_URL,
+const client = axios.create({
   headers: {
-    Authorization: `Bearer ${REACT_APP_OPENAI_API_KEY}`,
-    'Content-Type': 'text/plain',
+    Authorization: "Bearer " + REACT_APP_OPENAI_API_KEY
   },
 });
 
-export const fetchOpenAIData = async (prompt) => {
+export const fetchOpenAIData = async (message) => {
   try {
-    const response = await openaiService.post('/completions', {
+    const result = await client.post('https://api.openai.com/v1/completions', {
       model: 'text-davinci-003',
-      prompt: "Find not simplified recipes recipes and put them into JSON format that can be made with the ingredients (don't have to contain all ingredients): " + prompt + ";  with fields: \"name\" - String, \"ingredients\" - array,  \"steps\" - String. Don't put other text, you can post only JSON",
-      max_tokens: 100,
+      prompt: message,
+      max_tokens: 1000,
     });
-    console.log(response.data.choices[0].text);
-    return JSON.parse(response.data.choices[0].text);
-  } catch (error) {
-    throw error;
+
+    return JSON.parse(result.data.choices[0].text);
+  } catch (err) {
+    console.log(err);
+    throw err; // Re-throw the error to be caught in the calling function
   }
-};
+}

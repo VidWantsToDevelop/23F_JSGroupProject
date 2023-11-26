@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import RecipeFinderApp from './RecipeFinderApp';
 
@@ -9,7 +9,7 @@ import RecipeFinderApp from './RecipeFinderApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <RecipeFinderApp initialIngredients={"onions,beef,garlic,pepper"}/>
+  <RecipeFinderApp initialIngredients={"onions,beef,garlic,pepper, chicken, bacon, tomatoes, salt, bread"}/>
 );
 
 // If you want to start measuring performance in your app, pass a function
