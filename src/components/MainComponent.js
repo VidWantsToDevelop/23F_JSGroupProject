@@ -3,6 +3,7 @@ import { DragDropContext } from "react-beautiful-dnd"
 import Data from "../data/recipeData"
 import Column from "./Column"
 import styled from 'styled-components'
+import { fetchOpenAIData } from "../services/openaiService"
 const { OpenAI } = require('openai');
 
 
@@ -13,19 +14,21 @@ const Container = styled.div`
 // console.log(process.env.REACT_APP_OPENAI_API_KEY);
 
 // // Configure the OpenAI API
-const openai = new OpenAI({
-    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true,
-});
+// const openai = new OpenAI({
+//     apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+//     dangerouslyAllowBrowser: true,
+// });
 
 class MainComponent extends React.Component {
     state = {
         columns: Data.columns,
         columnOrder: Data.columnOrders,
         ingredients: Data.ingredients,
-        prompt: "What is the recipe for a delicious meal?\n\nPot: potato,beef,salt,turmeric\n\nRecipe:",
         gptResponse: "",
-        loading: false
+        loading: false,
+        warning: false,
+        recipes: [],
+        ingredientsInPot: []
     }
 
     // Get the ingredients from the pot
@@ -46,16 +49,42 @@ class MainComponent extends React.Component {
 
     // Get the recipes from the OpenAI API
     getRecipes = async () => {
+        // try {
+        //     const completion = await openai.chat.completions.create({
+        //         "messages": [{"role": "user", "content": "Tell a joke"}],
+        //         "model": "gpt-3.5-turbo",
+        //     });
+        //     console.log(completion.choices[0]?.message?.content);
+        // }
+        // catch(error) {
+        //     console.log("Error occured while fetching the recipes: " + error);
+        // }
+
+        // Generating our recipes
         try {
-            const completion = await openai.chat.completions.create({
-                "messages": [{"role": "user", "content": "Tell a joke"}],
-                "model": "gpt-3.5-turbo",
-            });
-            console.log(completion.choices[0]?.message?.content);
+            this.setState({loading: true});
+
+            const initialList = this.props.initialIngredients.split(',').map(ingredient => ingredient.trim());
+
+            if(initialList.length < 4) {
+                this.setState({warning: "Please add at least 4 ingredients."});
+
+                return;
+            } else {
+                this.setState({warning: null});
+            }
+
+            // Get results
+            const result = await fetchOpenAIData(this.whatsInThePot());
+
+            // Set the recipes
+            this.setState({recipes: result});
+        } catch(error) {
+            console.error("Error fetching recipes: " + error);
+        } finally {
+            this.setState({loading: false});
         }
-        catch(error) {
-            console.log("Error occured while fetching the recipes: " + error);
-        }
+
     }
 
     // almost like a useEffect hook :)
@@ -165,23 +194,46 @@ class MainComponent extends React.Component {
 
     render() {
         return (
-        <DragDropContext
-            onDragEnd={this.onDragEnd}
-            onDragStart={this.onDragStart}
-            onDragUpdate={this.onDragUpdate}
-        >
-            <Container>
-                {this.state.columnOrder.map(colId => {
-                    const column = this.state.columns[colId]
-                    const ingredients = column.ingredientIds.map(ingredientId => this.state.ingredients[ingredientId])
+            <div>
+                <DragDropContext
+                    onDragEnd={this.onDragEnd}
+                    onDragStart={this.onDragStart}
+                    onDragUpdate={this.onDragUpdate}
+                >
+                    <Container>
+                        {this.state.columnOrder.map(colId => {
+                            const column = this.state.columns[colId]
+                            const ingredients = column.ingredientIds.map(ingredientId => this.state.ingredients[ingredientId])
 
-                    console.log(ingredients)
+                            console.log(ingredients)
 
-                    return <Column key={column.id} column={column} ingredients={ingredients} />
-                })}
-            </Container>
-        </DragDropContext>
+                            return <Column key={column.id} column={column} ingredients={ingredients} />
+                        })}
+                    </Container>
+                </DragDropContext>
 
+                <div className="recipe-finder-container"> 
+                    <h2>Recipes:</h2>
+                    {this.state.warning ? (
+                        <p className="warning">{this.warning}</p> 
+                    ) : this.state.loading ? (
+                        <p className="loading">Looking for recipes...</p> 
+                    ) : (
+                        <ul>
+                        {Object.keys(this.state.recipes).map((recipeKey) => {
+                            const recipe = this.state.recipes[recipeKey];
+                            return (
+                            <li key={recipeKey} className="recipe-item"> 
+                                <h3>{recipe.name}</h3>
+                                <p>Ingredients: {recipe.ingredients.join(', ')}</p>
+                                <p>Steps: {recipe.steps}</p>
+                            </li>
+                            );
+                        })}
+                        </ul>
+                    )}
+                    </div>
+            </div>
         )
     }
 }

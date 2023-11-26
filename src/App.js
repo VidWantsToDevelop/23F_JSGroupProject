@@ -2,7 +2,7 @@ import "./App.css";
 import MainComponent from "./components/MainComponent";
 import banana from "./banana-gif.gif";
 
-function App() {
+function App({ initialIngredients }) {
   return (
     <div className="App">
       <div className="headerBasic">
@@ -12,7 +12,7 @@ function App() {
         <img src={banana} alt="banana dancing"></img>
         <p id="banana-id">P.S. Bananas rule the world!</p>
       </div>
-      <MainComponent />
+      <MainComponent initialIngredients={ initialIngredients } />
       <footer>
         @React Demo App - Recipe Maker | JavaScript Frameworks Course - Georgian College | David Boldyrev, Anton Korchynskyi, Vladyslav Berestetskyi
       </footer>
