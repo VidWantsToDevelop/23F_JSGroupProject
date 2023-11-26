@@ -3,17 +3,29 @@ import { DragDropContext } from "react-beautiful-dnd"
 import Data from "../data/recipeData"
 import Column from "./Column"
 import styled from 'styled-components'
+const { OpenAI } = require('openai');
+
 
 const Container = styled.div`
     display: flex;
-
 `;
+
+console.log(process.env.REACT_APP_OPENAI_API_KEY);
+
+// Configure the OpenAI API
+const openai = new OpenAI({
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true,
+});
 
 class MainComponent extends React.Component {
     state = {
         columns: Data.columns,
         columnOrder: Data.columnOrders,
-        ingridients: Data.ingridients
+        ingridients: Data.ingridients,
+        prompt: "What is the recipe for a delicious meal?\n\nPot: potato,beef,salt,turmeric\n\nRecipe:",
+        gptResponse: "",
+        loading: false
     }
 
     // Get the ingridients from the pot
@@ -32,6 +44,20 @@ class MainComponent extends React.Component {
         return potString;
     }
 
+    // Get the recipes from the OpenAI API
+    getRecipes = async () => {
+        try {
+            const completion = await openai.chat.completions.create({
+                "messages": [{"role": "user", "content": "Tell a joke"}],
+                "model": "gpt-3.5-turbo",
+            });
+            console.log(completion.choices[0]?.message?.content);
+        }
+        catch(error) {
+            console.log("Error occured while fetching the recipes: " + error);
+        }
+    }
+
     // almost like a useEffect hook :)
     componentDidUpdate(prevProps, prevState) {
         // Check if something has been put/removed from the pot
@@ -40,6 +66,10 @@ class MainComponent extends React.Component {
             console.log(this.whatsInThePot());
         }
         
+    }
+
+    componentDidMount() {
+        this.getRecipes();
     }
 
     onDragEnd = result => {
