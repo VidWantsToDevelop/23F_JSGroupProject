@@ -29,6 +29,15 @@ const PrettyButton = styled.button`
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    border-radius: 0.5rem;
+    box-shadow: 5px 5px #457547;
+
+    &:hover {
+        color: #4CAF50;
+        background-color: white;
+        cursor: pointer;
+        box-shadow: 5px 5px #457547;
+    }
 `;
 
 class MainComponent extends React.Component {
