@@ -19,6 +19,18 @@ const Container = styled.div`
 //     dangerouslyAllowBrowser: true,
 // });
 
+const PrettyButton = styled.button`
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+`;
+
 class MainComponent extends React.Component {
     state = {
         columns: Data.columns,
@@ -28,6 +40,7 @@ class MainComponent extends React.Component {
         loading: false,
         warning: false,
         recipes: [],
+        isEmpty: true,
         ingredientsInPot: []
     }
 
@@ -49,16 +62,11 @@ class MainComponent extends React.Component {
 
     // Get the recipes from the OpenAI API
     getRecipes = async () => {
-        // try {
-        //     const completion = await openai.chat.completions.create({
-        //         "messages": [{"role": "user", "content": "Tell a joke"}],
-        //         "model": "gpt-3.5-turbo",
-        //     });
-        //     console.log(completion.choices[0]?.message?.content);
-        // }
-        // catch(error) {
-        //     console.log("Error occured while fetching the recipes: " + error);
-        // }
+
+        console.log("Getting recipes...")
+
+        // Make sure to indicate that the output is not empty anymore
+        this.setState({isEmpty: false});
 
         // Generating our recipes
         try {
@@ -98,7 +106,6 @@ class MainComponent extends React.Component {
     }
 
     componentDidMount() {
-        this.getRecipes();
     }
 
     onDragEnd = result => {
@@ -212,6 +219,8 @@ class MainComponent extends React.Component {
                     </Container>
                 </DragDropContext>
 
+                <PrettyButton className="generate-button" onClick={() => this.getRecipes()}>Get recipes</PrettyButton>
+
                 <div className="recipe-finder-container"> 
                     <h2>Recipes:</h2>
                     {this.state.warning ? (
@@ -220,16 +229,17 @@ class MainComponent extends React.Component {
                         <p className="loading">Looking for recipes...</p> 
                     ) : (
                         <ul>
-                        {Object.keys(this.state.recipes).map((recipeKey) => {
-                            const recipe = this.state.recipes[recipeKey];
-                            return (
-                            <li key={recipeKey} className="recipe-item"> 
-                                <h3>{recipe.name}</h3>
-                                <p>Ingredients: {recipe.ingredients.join(', ')}</p>
-                                <p>Steps: {recipe.steps}</p>
-                            </li>
-                            );
-                        })}
+                        {this.state.isEmpty ? (
+                            <p>No recipes as of yet...</p>
+                        ) : (
+                            this.state.recipes.map((recipe, index) => (
+                                <li key={index}>
+                                    <h3>{recipe.name}</h3>
+                                    <p>Ingredients: {recipe.ingredients.join(', ')}</p>
+                                    <p>Steps: {recipe.steps}</p>
+                                </li>
+                            ))
+                        )}
                         </ul>
                     )}
                     </div>
