@@ -5,13 +5,23 @@ const RecipeFinderApp = ({ initialIngredients }) => {
   const [ingredients, setIngredients] = useState(initialIngredients || '');
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [warning, setWarning] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true); 
+        setLoading(true);
 
-        const prompt = `Find three recipes (under 75 words each) and put them together into one JSON file without the array, that can be made with the ingredients (don't have to contain all ingredients): ${ingredients};\n
+        
+        const ingredientList = ingredients.split(',').map(ingredient => ingredient.trim());
+        if (ingredientList.length < 4) {
+          setWarning('Please add at least 4 ingredients.');
+          return; 
+        } else {
+          setWarning(null); 
+        }
+
+        const prompt = `Find four recipes (under 75 words each) and put them together into one JSON file without the array, that can be made with the ingredients (don't have to contain all ingredients): ${ingredients};\n
         USE THIS JSON FORMAT:\n
         
         {
@@ -34,7 +44,7 @@ const RecipeFinderApp = ({ initialIngredients }) => {
       } catch (error) {
         console.error('Error fetching recipes:', error);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
@@ -46,7 +56,9 @@ const RecipeFinderApp = ({ initialIngredients }) => {
       <h1>Recipe Finder</h1>
 
       <h2>Recipes:</h2>
-      {loading ? (
+      {warning ? (
+        <p>{warning}</p>
+      ) : loading ? (
         <p>Looking for recipes...</p>
       ) : (
         <ul>

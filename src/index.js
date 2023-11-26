@@ -9,7 +9,7 @@ import RecipeFinderApp from './RecipeFinderApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <RecipeFinderApp initialIngredients={"onions,beef,garlic,pepper, chicken, bacon, tomatoes, salt, bread"}/>
+  <RecipeFinderApp initialIngredients={"onions,beef,garlic, chicken"}/>
 );
 
 // If you want to start measuring performance in your app, pass a function
