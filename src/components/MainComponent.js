@@ -11,14 +11,6 @@ const Container = styled.div`
     display: flex;
 `;
 
-// console.log(process.env.REACT_APP_OPENAI_API_KEY);
-
-// // Configure the OpenAI API
-// const openai = new OpenAI({
-//     apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-//     dangerouslyAllowBrowser: true,
-// });
-
 const PrettyButton = styled.button`
     background-color: #4CAF50;
     border: none;
@@ -55,6 +47,30 @@ class MainComponent extends React.Component {
 
     // Get the ingredients from the pot
     whatsInThePot = () => {
+
+        // Check if the pot is empty
+        if(this.state.columns["col-0"].ingredientIds.length === 0) {
+            this.setState({warning: "Pot can't be empty"});
+            alert("Pot can't be empty");
+
+            return;
+        }
+
+        // Check if less than 4 ingredients currently in the pot
+        if(this.state.columns["col-0"].ingredientIds.length < 4) {
+            this.setState({warning: "Need at least 4 ingredients (" + this.state.columns["col-0"].ingredientIds.length + " provided)"});
+            alert("Pot can't be empty");
+
+            return;
+        }
+
+        // Check if more than 10 ingredients currently in the pot
+        if(this.state.columns["col-0"].ingredientIds.length > 10) {
+            this.setState({"warning": "Too many ingredients are in the pot. Please remove some ingredients."});
+            alert("Too many ingredients are in the pot. Please remove some ingredients.");
+
+            return;
+        }
 
         // Here is the requested format for the OpenAI API (e.g. "potato,beef,salt,turmeric")
         const pot = this.state.columns["col-0"].ingredientIds.map(ingredientId => this.state.ingredients[ingredientId]);
