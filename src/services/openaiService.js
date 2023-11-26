@@ -1,6 +1,4 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
-dotenv.config();
 
 const OPENAI_API_BASE_URL = 'https://api.openai.com/v1';
 const REACT_APP_OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY;

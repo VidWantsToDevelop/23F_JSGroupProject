@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom/client";
+
 import { fetchOpenAIData } from "./services/openaiService";
 
 const RecipeFinderApp = ({ initialIngredients }) => {
@@ -20,6 +20,9 @@ const RecipeFinderApp = ({ initialIngredients }) => {
 
     fetchData();
   }, [ingredients]);
+
+
+console.log(recipes);
 
   return (
 
