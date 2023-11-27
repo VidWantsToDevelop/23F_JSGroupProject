@@ -48,18 +48,23 @@ class MainComponent extends React.Component {
     // Get the ingredients from the pot
     whatsInThePot = () => {
 
+        console.log("Getting ingredients from the pot...")
+        console.log(this.state.columns["col-0"])
+        console.log(this.state.columns["col-0"].ingredientIds.length)
+
         // Check if the pot is empty
         if(this.state.columns["col-0"].ingredientIds.length === 0) {
+            console.log("Pot is empty");
             this.setState({warning: "Pot can't be empty"});
-            alert("Pot can't be empty");
 
             return;
         }
 
         // Check if less than 4 ingredients currently in the pot
         if(this.state.columns["col-0"].ingredientIds.length < 4) {
+            console.log("Need at least 4 ingredients (" + this.state.columns["col-0"].ingredientIds.length + " provided)");
             this.setState({warning: "Need at least 4 ingredients (" + this.state.columns["col-0"].ingredientIds.length + " provided)"});
-            alert("Pot can't be empty");
+            alert("Need at least 4 ingredients (" + this.state.columns["col-0"].ingredientIds.length + " provided");
 
             return;
         }
@@ -125,7 +130,6 @@ class MainComponent extends React.Component {
         // Check if something has been put/removed from the pot
         if(prevState.columns["col-0"].ingredientIds.length !== this.state.columns["col-0"].ingredientIds.length) {
             console.log("Pot has been updated");
-            console.log(this.whatsInThePot());
         }
         
     }
