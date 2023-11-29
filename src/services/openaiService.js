@@ -34,7 +34,7 @@ export const fetchOpenAIData = async (ingredients) => {
       prompt: prompt,
       max_tokens: 1000,
     });
-
+    console.log(result.data.choices[0].text)
     return JSON.parse(result.data.choices[0].text);
   } catch (err) {
     console.log(err);
